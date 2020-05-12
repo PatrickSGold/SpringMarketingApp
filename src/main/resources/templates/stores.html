@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stores</title>
+</head>
+<div align="center">
+<body>
+    <h1>Stores</h1>
+    <a href="new_store">Add New Store</a>
+<br/><br/>
+    <form th:object="${Area}" method="get">
+    <table border="1" cellpadding="10">
+    <thead>
+    <tr>
+        <th>Store ID</th>
+        <th>Store Name</th>
+        <th>Store Manager</th>
+        <th>Area ID</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="store : ${listOfStores}">
+            <td th:text="${store.id}">Store ID</td>
+            <td th:text="${store.store_name}">Store ID</td>
+            <td th:text="${store.store_manager}">Store ID</td>
+            <td th:text="${store.area_id}">Area ID</td>
+        <td>
+            <a th:href="@{'/edit/' + ${store.id}}">Edit</a>
+            &nbsp;
+            <a th:href="@{'/delete/' + ${store.id}}">Delete</a>
+        </td>
+        </tr>
+    </tbody>
+</table>
+    </form>
+</body>
+</div>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Areas</title>
+</head>
+<div align="center">
+<body>
+ <h1>Areas</h1>
+ <a th:href="@{'/new_area/' + ${managerId}}">Add New Area</a>
+ <br/><br/>
+ <table border="1" cellpadding="10">
+     <thead>
+         <tr>
+             <th>Area ID</th>
+             <th>State</th>
+             <th>City</th>
+             <th>Zipcode</th>
+             <th>Stores</th>
+         </tr>
+     </thead>
+     <tbody>
+     <tr th:each="area : ${listOfAreas}">
+         <td th:text="${area.id}">Area ID</td>
+         <td th:text="${area.state}">State</td>
+         <td th:text="${area.city}">City</td>
+         <td th:text="${area.zip_code}">Zipcode</td>
+         <td th:text="${area.number_of_stores}">Stores</td>
+         <td>
+             <a th:href="@{'/stores/' + ${area.id}}">Stores</a>
+             &nbsp;
+             <a th:href="@{'/edit_area/' + ${area.id}}">Edit</a>
+             &nbsp;
+             <a th:href="@{'/delete_area/' + ${area.id}}">Delete</a>
+         </td>
+     </tr>
+     </tbody>
+ </table>
+</body>
+</div>
+</html>

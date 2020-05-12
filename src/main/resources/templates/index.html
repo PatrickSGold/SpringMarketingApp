@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketing Managers</title>
+</head>
+<div align="center">
+    <body>
+    <h1>Marketing Managers</h1>
+    <a href="new_manager">Add New Manager</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Manager ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="manager : ${listOfManagers}">
+            <td th:text="${manager.id}">Manager ID</td>
+            <td th:text="${manager.first_name}">First Name</td>
+            <td th:text="${manager.last_name}">Last Name</td>
+            <td th:text="${manager.email}">Email</td>
+            <td th:text="${manager.phone_number}">Phone</td>
+            <td>
+                <a th:href="@{'/areas/' + ${manager.id}}">Areas</a>
+                &nbsp;
+                <a th:href="@{'/edit_manager/' + ${manager.id}}">Edit</a>
+                &nbsp;
+                <a th:href="@{'/delete_manager/' + ${manager.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+</div>
+</html>
