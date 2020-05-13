@@ -42,7 +42,8 @@ public class Area {
     }
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", nullable = false, referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "manager_id", nullable = false, referencedColumnName = "id",
+            insertable = false, updatable = false)
     public MarketingManager getManager() {
         return manager;
     }

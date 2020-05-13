@@ -12,6 +12,7 @@ public class Store {
     private Long id;
     private String store_name;
     private String store_manager;
+    private Long area_id;
 
     private Area area;
 
@@ -32,7 +33,8 @@ public class Store {
     }
 
     @ManyToOne
-    @JoinColumn(name = "area_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "area_id", nullable = false, referencedColumnName = "id",
+            insertable = false, updatable = false)
     public Area getArea() {
         return area;
     }
@@ -78,4 +80,11 @@ public class Store {
         this.store_manager = store_manager;
     }
 
+    public Long getArea_id() {
+        return area_id;
+    }
+
+    public void setArea_id(Long area_id) {
+        this.area_id = area_id;
+    }
 }

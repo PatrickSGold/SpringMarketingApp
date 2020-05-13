@@ -49,6 +49,7 @@ public class AreaController {
     public String saveArea(@ModelAttribute("Area") Area area) {
         service.save(area);
         Long manager_id = area.getManager_id();
+
         return "redirect:/areas/" + manager_id;
     }
 
@@ -62,12 +63,12 @@ public class AreaController {
         return mav;
     }
 
+    // figure out why this wont work
     @RequestMapping("/delete_area/{id}")
     public String deleteArea(@PathVariable(name = "id") Long id) {
          service.delete(id);
-  //       Area area = new Area();
-   //      Long manager_id = area.getManager_id();
-         return "redirect:/areas/{id}";
+
+         return "redirect:/areas/" + id;
     }
 
 
