@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.persistence.PreUpdate;
 import java.util.List;
+
 
 @Controller
 public class StoreController {
@@ -29,10 +28,9 @@ public class StoreController {
     @RequestMapping("/stores/{area_id}")
     public String showStores(@PathVariable(name = "area_id") Long id, Model model) {
         List<Store> listOfStores = areaService.get(id).getListOfStores();
-        Long area_id = areaService.get(id).getId();
 
         model.addAttribute("listOfStores", listOfStores);
-        model.addAttribute("areaId", area_id);
+        model.addAttribute("areaId", id);
 
         return "stores";
     }
@@ -50,6 +48,7 @@ public class StoreController {
     public String saveArea(@ModelAttribute("Store") Store store) {
         storeService.save(store);
         Long area_id = store.getArea_id();
+
         return "redirect:/stores/" + area_id;
     }
 
@@ -61,6 +60,14 @@ public class StoreController {
         mav.addObject("Store", store);
 
         return mav;
+    }
+
+    @RequestMapping("/delete_store/{id}")
+    public String deleteStore(@PathVariable(name = "id") Long id) {
+        final Long area_id = storeService.get(id).getArea_id();
+        storeService.delete(id);
+
+        return "redirect:/stores/" + area_id;
     }
 
 }

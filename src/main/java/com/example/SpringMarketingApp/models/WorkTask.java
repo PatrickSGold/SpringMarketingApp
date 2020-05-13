@@ -2,6 +2,7 @@ package com.example.SpringMarketingApp.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 
 @Entity
@@ -10,8 +11,9 @@ public class WorkTask {
 
     private Long id;
     private String work_done_today;
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
     private boolean spoken_to_manager;
+    private Long store_id;
 
     private Store store;
 
@@ -29,7 +31,8 @@ public class WorkTask {
     }
 
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "store_id", nullable = false, referencedColumnName = "id",
+            insertable = false, updatable = false)
     public Store getStore() {
         return store;
     }
@@ -60,5 +63,13 @@ public class WorkTask {
 
     public void setSpoken_to_manager(boolean spoken_to_manager) {
         this.spoken_to_manager = spoken_to_manager;
+    }
+
+    public Long getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(Long store_id) {
+        this.store_id = store_id;
     }
 }

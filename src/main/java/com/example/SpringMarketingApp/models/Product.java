@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Product {
 
     private Long id;
-    private Long products_given_this_week;
+    private Long products_given;
     private Long total_products;
     private Long requested_products;
+    private Long store_id;
 
     private Store store;
 
@@ -27,7 +28,8 @@ public class Product {
     }
 
     @ManyToOne
-    @JoinColumn(name = "store_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "store_id", nullable = false, referencedColumnName = "id",
+            insertable = false, updatable = false)
     public Store getStore() {
         return store;
     }
@@ -36,12 +38,12 @@ public class Product {
         this.store = store;
     }
 
-    public Long getProducts_given_this_week() {
-        return products_given_this_week;
+    public Long getProducts_given() {
+        return products_given;
     }
 
-    public void setProducts_given_this_week(Long products_given_this_week) {
-        this.products_given_this_week = products_given_this_week;
+    public void setProducts_given(Long products_given) {
+        this.products_given = products_given;
     }
 
     public Long getTotal_products() {
@@ -58,5 +60,13 @@ public class Product {
 
     public void setRequested_products(Long requested_products) {
         this.requested_products = requested_products;
+    }
+
+    public Long getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(Long store_id) {
+        this.store_id = store_id;
     }
 }

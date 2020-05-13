@@ -23,6 +23,10 @@
             <td th:text="${store.store_name}">Store Name</td>
             <td th:text="${store.store_manager}">Store Manager</td>
         <td>
+            <a th:href="@{'/work_tasks/' + ${store.id}}">Work Tasks</a>
+            &nbsp;
+            <a th:href="@{'/products/' + ${store.id}}">Products</a>
+            &nbsp;
             <a th:href="@{'/edit_store/' + ${store.id}}">Edit</a>
             &nbsp;
             <a th:href="@{'/delete_store/' + ${store.id}}">Delete</a>

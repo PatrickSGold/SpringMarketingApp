@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Work Tasks</title>
+</head>
+<div align="center">
+    <body>
+    <h1>Work Tasks</h1>
+    <a th:href="@{'/new_work_task/' + ${storeId}}">Add New Work Task</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Work Task ID</th>
+            <th>Work Done Today</th>
+            <th>Spoken To Manager</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="work_task : ${listOfWorkTasks}">
+            <td th:text="${work_task.id}">Work Task ID</td>
+            <td th:text="${work_task.work_done_today}">Work Done Today</td>
+            <td th:text="${work_task.spoken_to_manager}">Spoken To Manager</td>
+            <td th:text="${work_task.date}">Date</td>
+
+            <td>
+                <a th:href="@{'/edit_work_task/' + ${work_task.id}}">Edit</a>
+                &nbsp;
+                <a th:href="@{'/delete_work_task/' + ${work_task.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+    </body>
+</div>
+</html>

@@ -28,10 +28,9 @@ public class AreaController {
     @RequestMapping("/areas/{id}")
     public String viewPage(@PathVariable(name = "id") Long id, Model model) {
         List<Area> listOfAreas = managerService.get(id).getListOfAreas();
-        Long managerId = managerService.get(id).getId();
 
         model.addAttribute("listOfAreas", listOfAreas);
-        model.addAttribute("managerId", managerId);
+        model.addAttribute("managerId", id);
 
         return "areas";
     }
@@ -66,9 +65,10 @@ public class AreaController {
     // figure out why this wont work
     @RequestMapping("/delete_area/{id}")
     public String deleteArea(@PathVariable(name = "id") Long id) {
+        Long manager_id = service.get(id).getManager_id();
          service.delete(id);
 
-         return "redirect:/areas/" + id;
+         return "redirect:/areas/" + manager_id;
     }
 
 
